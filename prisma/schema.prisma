@@ -57,6 +57,7 @@ model User {
   password    String
   userDetail  UserDetail?
   bookings    Booking[]
+  tokens      Token[]
   
   
 }
@@ -71,4 +72,11 @@ model UserDetail {
 
   userId        Int      @unique
   user          User     @relation(fields: [userId], references: [id])
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  token     String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
