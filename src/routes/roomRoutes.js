@@ -8,7 +8,7 @@ const {
   deleteRoomController,
   putRoomController,
   patchRoomController,
-} = require("../controllers/roomController");
+} = require("../controller/roomController");
 
 router.get("/", getRoomsController);
 router.get("/:id", getRoomController);
