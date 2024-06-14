@@ -10,7 +10,7 @@ const getRoomsController = async (req, res) => {
   try {
     const rooms = await getAllRoom();
 
-    res.status(200).json(rooms);
+    res.status(200).json({ data: rooms });
   } catch (err) {
     res.status(500).json({
       message: err.message,
@@ -23,7 +23,7 @@ const getRoomController = async (req, res) => {
     const roomId = parseInt(req.params.id);
     const room = await getRoomById(roomId);
 
-    res.status(200).json(room);
+    res.status(200).json({ data: room });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -32,6 +32,16 @@ const getRoomController = async (req, res) => {
 const createRoomController = async (req, res) => {
   try {
     const newRoomData = req.body;
+
+    if (
+      !newRoomData.name ||
+      !newRoomData.price ||
+      !newRoomData.description ||
+      !newRoomData.image ||
+      newRoomData.availability === undefined
+    ) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
     const room = await createRoom(newRoomData);
     res.status(200).json({

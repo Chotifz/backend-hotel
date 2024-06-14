@@ -19,17 +19,16 @@ const getRoomById = async (id) => {
 };
 
 const createRoom = async (newRoomData) => {
-  const room = await postRoomById(newRoomData);
+  const room = await prisma.room.create({
+    data: {
+      name: newRoomData.name,
+      price: newRoomData.price,
+      description: newRoomData.description,
+      image: newRoomData.image,
+      availability: newRoomData.availability,
+    },
+  });
   return room;
-  // prisma.room.create({
-  //   data: {
-  //     name: newRoomData.name,
-  //     price: newRoomData.price,
-  //     description: newRoomData.description,
-  //     image: newRoomData.image,
-  //   },
-  // });
-  // return room;
 };
 
 const deleteRoomById = async (id) => {
