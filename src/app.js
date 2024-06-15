@@ -16,6 +16,7 @@ app.get("/api", (req, res) => {
 app.use("/rooms", roomRoutes);
 
 app.use("/bookings", bookingRoutes);
+
 const server = app.listen(PORT, () => {
   console.log(`Express API running on: http://localhost:${PORT} ...`);
 });
