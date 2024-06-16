@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const roomRoutes = require("./routes/roomRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+const userRegisterRouters = require("./routes/userRegisterRoutes");
 
 const app = express();
 dotenv.config();
@@ -14,8 +15,8 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/rooms", roomRoutes);
-
 app.use("/bookings", bookingRoutes);
+app.use("/register", userRegisterRouters);
 
 const server = app.listen(PORT, () => {
   console.log(`Express API running on: http://localhost:${PORT} ...`);
