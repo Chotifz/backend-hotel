@@ -1,5 +1,6 @@
 module.exports = [
   {
+    id: 1,
     name: "Family Room",
     price: 500000,
     description: "Ini adalah room family",
@@ -9,6 +10,7 @@ module.exports = [
     roomDetailId: 1,
   },
   {
+    id: 2,
     name: "Standard Room",
     price: 250000,
     description: "Cozy room with a comfortable bed",
@@ -18,6 +20,7 @@ module.exports = [
     roomDetailId: 2,
   },
   {
+    id: 3,
     name: "Rooms Family",
     price: 500000,
     description: "This is room family",
@@ -26,6 +29,7 @@ module.exports = [
     availability: false,
   },
   {
+    id: 4,
     name: "Double Bed Room",
     price: 460000,
     description: "Luxurious room with extra amenitie",

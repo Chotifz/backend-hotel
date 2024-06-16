@@ -12,12 +12,16 @@ const getRoomsController = async (req, res) => {
   }
 };
 
-const getRoomController = async (req, res) => {
+const getRoomById = async (req, res) => {
   try {
     const roomId = parseInt(req.params.id);
-    const rooms = await roomService.getAllRoom();
+    const room = await roomService.getRoomById(roomId);
 
-    res.status(200).json({ data: room });
+    if (room) {
+      res.status(200).json({ data: room });
+    } else {
+      res.status(404).json({ message: "Room not found" });
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -38,7 +42,7 @@ const createRoomController = async (req, res) => {
     }
 
     const room = await roomService.createRoom(newRoomData);
-    res.status(200).json({
+    res.status(201).json({
       data: room,
       message: "create room succes",
     });
@@ -51,7 +55,7 @@ const deleteRoomController = async (req, res) => {
   try {
     const roomId = req.params.id;
     await roomService.deleteRoomById(parseInt(roomId));
-    res.status(200).json({
+    res.status(204).json({
       message: "Deleted room was succesfull",
     });
   } catch (err) {
@@ -105,7 +109,7 @@ const patchRoomController = async (req, res) => {
 
 module.exports = {
   getRoomsController,
-  getRoomController,
+  getRoomById,
   createRoomController,
   deleteRoomController,
   putRoomController,

@@ -1,7 +1,7 @@
 const prisma = require("../db");
 
 const getAllRoom = async () => {
-  const rooms = await prisma.room.findMany();
+  const rooms = await prisma.$queryRaw`select * from room`;
   return rooms;
 };
 

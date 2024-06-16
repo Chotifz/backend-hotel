@@ -7,29 +7,29 @@ const bookingSeed = require("../seeds/bookingSeed");
 const userSeed = require("../seeds/userSeed");
 const userDetailSeed = require("../seeds/userDetailSeed");
 
-// async function clearDatabase() {
-//   await prisma.booking.deleteMany({});
-//   await prisma.userDetail.deleteMany({});
-//   await prisma.user.deleteMany({});
-//   await prisma.room.deleteMany({});
-//   await prisma.roomDetail.deleteMany({});
-// }
+async function clearDatabase() {
+  await prisma.booking.deleteMany({});
+  await prisma.userDetail.deleteMany({});
+  await prisma.user.deleteMany({});
+  await prisma.room.deleteMany({});
+  await prisma.roomDetail.deleteMany({});
+}
 
 async function seedDatabase() {
-  // RoomDetail
-  await prisma.roomDetail.createMany({ data: roomDetailSeed });
+  // RoomDetail;
+  // await prisma.roomDetail.createMany({ data: roomDetailSeed });
 
-  // Room
-  await prisma.room.createMany({ data: roomSeed });
+  // Room;
+  // await prisma.room.createMany({ data: roomSeed });
 
-  // User
-  await prisma.user.createMany({ data: userSeed });
+  // User;
+  // await prisma.user.createMany({ data: userSeed });
 
-  // UserDetail
-  await prisma.userDetail.createMany({ data: userDetailSeed });
+  // UserDetail;
+  // await prisma.userDetail.createMany({ data: userDetailSeed });
 
   // Booking
-  // await prisma.booking.createMany({ data: bookingSeed });
+  await prisma.booking.createMany({ data: bookingSeed });
 
   console.log("Seed data entered successfully");
 }
