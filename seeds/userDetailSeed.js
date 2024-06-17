@@ -1,6 +1,5 @@
 module.exports = [
   {
-    id: 1,
     phoneNumber: "1234567890",
     address: "123 Main St, Anytown",
     token: "token123",
@@ -9,7 +8,6 @@ module.exports = [
     userId: 1,
   },
   {
-    id: 2,
     phoneNumber: "9876543210",
     address: "456 Oak St, Othertown",
     token: "token456",
