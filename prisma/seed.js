@@ -17,16 +17,16 @@ async function clearDatabase() {
 
 async function seedDatabase() {
   // RoomDetail;
-  // await prisma.roomDetail.createMany({ data: roomDetailSeed });
+  await prisma.roomDetail.createMany({ data: roomDetailSeed });
 
   // Room;
-  // await prisma.room.createMany({ data: roomSeed });
+  await prisma.room.createMany({ data: roomSeed });
 
   // User;
-  // await prisma.user.createMany({ data: userSeed });
+  await prisma.user.createMany({ data: userSeed });
 
   // UserDetail;
-  // await prisma.userDetail.createMany({ data: userDetailSeed });
+  await prisma.userDetail.createMany({ data: userDetailSeed });
 
   // Booking
   await prisma.booking.createMany({ data: bookingSeed });
