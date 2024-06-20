@@ -20,6 +20,7 @@ app.get("/api", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
+// app.use("/login", userLoginRouters);
 app.use("/users", userRoutes);
 app.use("/room-details", roomDetailRoutes);
 app.use("/user-details", userDetailRoutes);
