@@ -1,5 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
+
 const authRoutes = require("./routes/authRoutes");
 const roomRoutes = require("./routes/roomRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
@@ -10,6 +12,8 @@ const userDetailRoutes = require("./routes/usersDetailRoutes");
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT;
+
+app.use(cors());
 
 app.use(express.json());
 
