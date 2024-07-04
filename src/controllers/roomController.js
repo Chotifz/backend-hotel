@@ -1,4 +1,7 @@
 const roomService = require("../services/roomService");
+const cloudinary = require("../utils/cloudinaryConfig");
+const fs = require("fs");
+const path = require("path");
 
 const getRoomsController = async (req, res) => {
   try {
