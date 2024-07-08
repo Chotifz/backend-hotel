@@ -79,3 +79,11 @@ model Token {
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
 }
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
