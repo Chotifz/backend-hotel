@@ -8,6 +8,7 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const userRoutes = require("./routes/userRoutes");
 const roomDetailRoutes = require("./routes/roomDetailRoutes");
 const userDetailRoutes = require("./routes/usersDetailRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 dotenv.config();
@@ -27,6 +28,7 @@ app.use("/room-details", roomDetailRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/users", userRoutes);
 app.use("/user-details", userDetailRoutes);
+app.use("/contact", contactRoutes);
 
 app.listen(PORT, () => {
   console.log(`Express API running on: http://localhost:${PORT} ...`);
