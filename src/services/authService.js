@@ -1,6 +1,7 @@
 const prisma = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 const register = async (name, email, password) => {
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -22,6 +23,7 @@ const login = async (email, password) => {
   if (!user) throw new Error("User not found");
 
   const isValid = await bcrypt.compare(password, user.password);
+  console.log(isValid);
 
   if (!isValid) throw new Error("Invalid credentials");
 
@@ -29,9 +31,11 @@ const login = async (email, password) => {
     expiresIn: "1h",
   });
 
+  const hashdToken = crypto.createHash("sha256").update(token).digest("hex");
+
   await prisma.token.create({
     data: {
-      token,
+      token: hashdToken,
       userId: user.id,
     },
   });
