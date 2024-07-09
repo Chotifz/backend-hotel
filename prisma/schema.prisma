@@ -62,7 +62,6 @@ model UserDetail {
   id             Int     @id @default(autoincrement())
   phoneNumber    String?
   address        String?
-  token          String?
   status         String?
   profilePicture String?
 

@@ -19,7 +19,7 @@ const login = async (email, password) => {
   const user = await prisma.user.findUnique({
     where: { email },
   });
-
+  console.log(process.env.JWT_SECRET);
   if (!user) throw new Error("User not found");
 
   const isValid = await bcrypt.compare(password, user.password);
@@ -62,7 +62,7 @@ const forgotPassword = async (email) => {
     expiresIn: "1h",
   });
   console.log(
-    `Reset password link: http://your-app/reset-password?token=${resetToken}`
+    `Reset password link: http://localhost:2000/reset-password?token=${resetToken}`
   );
 };
 

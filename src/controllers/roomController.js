@@ -1,4 +1,7 @@
 const roomService = require("../services/roomService");
+const cloudinary = require("../utils/cloudinaryConfig");
+const fs = require("fs");
+const path = require("path");
 
 const getRoomsController = async (req, res) => {
   try {
@@ -30,16 +33,20 @@ const getRoomById = async (req, res) => {
 const createRoomController = async (req, res) => {
   try {
     const newRoomData = req.body;
+    console.log(req.file);
 
-    if (
-      !newRoomData.name ||
-      !newRoomData.price ||
-      !newRoomData.description ||
-      !newRoomData.image ||
-      newRoomData.availability === undefined
-    ) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+    // if (!req.file) {
+    //   return res.status(400).json({ message: "Image is required" });
+    // }
+
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "rooms",
+    });
+
+    // Hapus file lokal setelah diupload ke Cloudinary
+    fs.unlinkSync(req.file.path);
+
+    newRoomData.image = result.secure_url; // URL dari Cloudinary
 
     const room = await roomService.createRoom(newRoomData);
     res.status(201).json({

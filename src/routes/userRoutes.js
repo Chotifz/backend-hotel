@@ -15,12 +15,7 @@ router.get(
   // authenticate,
   userController.getUserById
 );
-router.post(
-  "/",
-  // authenticate,
-  validateUser,
-  userController.createUser
-);
+
 router.put(
   "/:id",
   // authenticate,

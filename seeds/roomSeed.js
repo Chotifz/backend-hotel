@@ -5,7 +5,7 @@ module.exports = [
     price: 500000,
     description: "Ini adalah room family",
     image:
-      "https://www.google.com/imgres?q=room%20hotel%20family&imgurl=https%3A%2F%2Fhotelnikkobali-benoabeach.com%2Fwp-content%2Fuploads%2F2020%2F08%2FheroOVS-Premier-Family_Hotel-Nikko-Bali-2.jpg&img",
+      "https://res.cloudinary.com/dxiiecbza/image/upload/v1720103792/roomEight_bsyps5.jpg",
     availability: true,
     roomDetailId: 1,
   },
