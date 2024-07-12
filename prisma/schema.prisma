@@ -14,76 +14,66 @@ datasource db {
 }
 
 model Room {
-  id Int @id @default(autoincrement())
-  name String
-  price Int
-  description String
-  image String
+  id           Int     @id @default(autoincrement())
+  name         String
+  price        Int
+  description  String
+  image        String
   availability Boolean
   roomDetailId Int?
 
-  bookings Booking[]
-  roomDetail   RoomDetail? @relation(fields: [roomDetailId], references: [id])
+  bookings   Booking[]
+  roomDetail RoomDetail? @relation(fields: [roomDetailId], references: [id])
 }
 
 model RoomDetail {
-  id Int @id @default(autoincrement())
-  maxGuest Int
-  n_beds Int
-  feature String
+  id        Int    @id @default(autoincrement())
+  maxGuest  Int
+  n_beds    Int
+  feature   String
   amenities String
-  
+
   rooms Room[]
-  }
-  
-
-model Booking {
-  id          Int      @id @default(autoincrement())
-  roomId      Int
-  userId      Int?
-  customerName String
-  startDate   DateTime
-  endDate     DateTime
-
-  room        Room    @relation(fields: [roomId], references: [id])
-  user        User?     @relation(fields: [userId], references: [id])
 }
 
+model Booking {
+  id           Int      @id @default(autoincrement())
+  roomId       Int
+  userId       String?
+  customerName String
+  startDate    DateTime
+  endDate      DateTime
+
+  room Room  @relation(fields: [roomId], references: [id])
+  user User? @relation(fields: [userId], references: [id])
+}
 
 model User {
-  id          Int      @id @default(autoincrement())
-  name        String
-  email       String   @unique
-  password    String
-  userDetail  UserDetail?
-  bookings    Booking[]
-  tokens      Token[]
-  
-  
+  id         String      @id @default(uuid())
+  name       String
+  email      String      @unique
+  password   String
+  userDetail UserDetail?
+  bookings   Booking[]
+  tokens     Token[]
 }
 
 model UserDetail {
-  id            Int      @id @default(autoincrement())
-  phoneNumber   String?
-  address       String?
-  status        String?
+  id             Int     @id @default(autoincrement())
+  phoneNumber    String?
+  address        String?
+  token          String?
+  status         String?
   profilePicture String?
 
-  userId        Int      @unique
-  user          User     @relation(fields: [userId], references: [id])
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Token {
-  id        Int      @id @default(autoincrement())
-  token     String
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-}
+  id     String @id @default(uuid())
+  token  String @db.VarChar(255)
+  userId String
 
-model ContactMessage {
-  id        Int      @id @default(autoincrement())
-  email     String
-  subject   String
-  message   String
-  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id])
 }
