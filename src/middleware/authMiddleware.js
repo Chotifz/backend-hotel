@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const prisma = require("../db");
+const crypto = require("crypto");
 
 const authenticate = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -7,15 +8,26 @@ const authenticate = async (req, res, next) => {
 
   if (!token) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
-    if (err) return res.sendStatus(403);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const dbUser = await prisma.user.findUnique({ where: { id: user.userId } });
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+    const dbToken = await prisma.token.findUnique({
+      where: { token: hashedToken },
+    });
+
+    if (!dbToken) return res.sendStatus(403);
+
+    const dbUser = await prisma.user.findUnique({
+      where: { id: decoded.userId },
+    });
     if (!dbUser) return res.sendStatus(403);
 
     req.user = dbUser;
     next();
-  });
+  } catch (err) {
+    return res.sendStatus(403);
+  }
 };
 
 // const authenticateToken = (req, res, next) => {
