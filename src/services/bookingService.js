@@ -12,7 +12,17 @@ const getBookingById = async (id) => {
 };
 
 const createBooking = async (data) => {
-  return await prisma.booking.create({ data });
+  const startDate = new Date(data.startDate);
+  const endDate = new Date(data.endDate);
+
+  return await prisma.booking.create({
+    data: {
+      roomId: data.roomId,
+      customerName: data.customerName,
+      startDate: startDate,
+      endDate: endDate,
+    },
+  });
 };
 
 const updateBooking = async (id, data) => {
