@@ -34,6 +34,9 @@ Pastikan Anda memiliki beberapa variabel lingkungan (environment variables) yang
    ```
 
 3. **Menjalankan Server**
+   ```bash
+   npx run dev
+   ```
 
 ## Kontributor
 

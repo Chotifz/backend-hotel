@@ -3,7 +3,7 @@ const roomDetailService = require("../services/roomDetailService");
 const getRoomDetails = async (req, res) => {
   try {
     const roomDetails = await roomDetailService.getAllRoomDetails();
-    res.json(roomDetails);
+    res.json({ data: roomDetails });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -13,7 +13,7 @@ const getRoomDetailById = async (req, res) => {
   try {
     const { id } = req.params;
     const roomDetail = await roomDetailService.getRoomDetail(id);
-    res.json(roomDetail);
+    res.json({ data: roomDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -23,7 +23,7 @@ const createRoomDetail = async (req, res) => {
   try {
     const roomDetailData = req.body;
     const newRoomDetail = await roomDetailService.addRoomDetail(roomDetailData);
-    res.json(newRoomDetail);
+    res.json({ data: newRoomDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -37,7 +37,7 @@ const updateRoomDetail = async (req, res) => {
       id,
       roomDetailData
     );
-    res.json(updatedRoomDetail);
+    res.json({ data: updatedRoomDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
