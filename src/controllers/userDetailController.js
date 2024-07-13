@@ -3,7 +3,7 @@ const userDetailService = require("../services/userDetailService");
 const getUserDetails = async (req, res) => {
   try {
     const userDetails = await userDetailService.getAllUserDetails();
-    res.json(userDetails);
+    res.json({ data: userDetails });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -13,7 +13,7 @@ const getUserDetailById = async (req, res) => {
   try {
     const { id } = req.params;
     const userDetail = await userDetailService.getUserDetail(id);
-    res.json(userDetail);
+    res.json({ data: userDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -23,7 +23,7 @@ const createUserDetail = async (req, res) => {
   try {
     const userDetailData = req.body;
     const newUserDetail = await userDetailService.addUserDetail(userDetailData);
-    res.json(newUserDetail);
+    res.json({ data: newUserDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -37,7 +37,7 @@ const updateUserDetail = async (req, res) => {
       id,
       userDetailData
     );
-    res.json(updatedUserDetail);
+    res.json({ data: updatedUserDetail });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
