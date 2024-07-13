@@ -1,18 +1,22 @@
-module.exports = [
+const users = require("./userSeed");
+
+const userDetails = [
   {
+    userId: users[0].id,
     phoneNumber: "1234567890",
-    address: "123 Main St, Anytown",
+    address: "123 Main St",
     token: "token123",
     status: "active",
-    profilePicture: "john.jpg",
-    userId: 1,
+    profilePicture: "umar.jpg",
   },
   {
-    phoneNumber: "9876543210",
-    address: "456 Oak St, Othertown",
+    userId: users[1].id,
+    phoneNumber: "0987654321",
+    address: "456 Elm St",
     token: "token456",
-    status: "inactive",
-    profilePicture: "jane.jpg",
-    userId: 2,
+    status: "active",
+    profilePicture: "abu_jahal.jpg",
   },
 ];
+
+module.exports = userDetails;
