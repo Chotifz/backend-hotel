@@ -1,16 +1,16 @@
-module.exports = [
+const roomDetail = [
   {
-    id: 1,
     maxGuest: 2,
     n_beds: 1,
-    feature: "WiFi, TV, Air Conditioning",
+    feature: "Lake view with sunset spot",
     amenities: "Towels, Shampoo, Hair Dryer",
   },
   {
-    id: 2,
     maxGuest: 4,
     n_beds: 2,
-    feature: "WiFi, TV, Air Conditioning, Mini Bar",
-    amenities: "Towels, Shampoo, Hair Dryer, Bathrobe",
+    feature: "City view",
+    amenities: "WiFi, TV, Air Conditioning, Mini Bar",
   },
 ];
+
+module.exports = roomDetail;
